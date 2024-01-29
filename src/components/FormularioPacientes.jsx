@@ -1,4 +1,5 @@
 import { Form, Card, Button, Row, Col } from "react-bootstrap";
+import ListaCitas from "./ListaCitas";
 
 const FormularioPacientes = () => {
   return (
@@ -89,6 +90,7 @@ const FormularioPacientes = () => {
           </Card.Footer>
         </Card>
       </Form>
+      <ListaCitas></ListaCitas>
     </section>
   );
 };
