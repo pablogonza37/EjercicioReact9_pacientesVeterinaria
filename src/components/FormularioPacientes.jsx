@@ -11,6 +11,28 @@ const FormularioPacientes = () => {
     sintomas: "",
   });
   const [mascotas, setMascotas] = useState([]);
+  const [errores, setErrores] = useState({});
+
+  const validarFormulario = () => {
+    let errores = {};
+
+    if (!mascota.nombre.trim() || /\d/.test(mascota.nombre)) {
+      errores.nombre =
+        "El nombre no puede estar vacío y no puede contener números";
+    }
+
+    if (!mascota.dueno.trim() || /\d/.test(mascota.dueno)) {
+      errores.dueno =
+        "El nombre no puede estar vacío y no puede contener números";
+    }
+
+    if (!mascota.sintomas.trim()) {
+      errores.sintomas = "Los síntomas no pueden estar vacíos";
+    }
+
+    setErrores(errores);
+    return Object.keys(errores).length === 0;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,8 +44,13 @@ const FormularioPacientes = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMascotas((prevState) => [...prevState, mascota]);
-    setMascota({ nombre: "", dueno: "", fecha: "", hora: "", sintomas: "" });
+    if (validarFormulario()) {
+      alert("Formulario válido. Datos enviados");
+      setMascotas((prevState) => [...prevState, mascota]);
+      setMascota({ nombre: "", dueno: "", fecha: "", hora: "", sintomas: "" });
+    } else {
+      alert("Formulario inválido. Por favor, completar todos los datos.");
+    }
   };
 
   return (
@@ -46,7 +73,11 @@ const FormularioPacientes = () => {
                     name="nombre"
                     value={mascota.nombre}
                     onChange={handleChange}
+                    minLength={3}
+                    maxLength={30}
+                    required
                   />
+                  {errores.nombre && <span>{errores.nombre}</span>}
                 </Col>
               </Row>
             </Form.Group>
@@ -59,11 +90,15 @@ const FormularioPacientes = () => {
                 <Col lg={9}>
                   <Form.Control
                     type="text"
-                    placeholder=""
+                    placeholder="Nombre del dueño"
                     name="dueno"
                     value={mascota.dueno}
                     onChange={handleChange}
+                    minLength={3}
+                    maxLength={30}
+                    required
                   />
+                  {errores.dueno && <span>{errores.dueno}</span>}
                 </Col>
               </Row>
             </Form.Group>
@@ -80,12 +115,16 @@ const FormularioPacientes = () => {
                     </Col>
                     <Col lg={6}>
                       <Form.Control
-                        type="text"
-                        placeholder="name@example.com"
+                        type="date"
+                        placeholder=""
                         name="fecha"
                         value={mascota.fecha}
                         onChange={handleChange}
+                        minLength={8}
+                        maxLength={10}
+                        required
                       />
+                      {errores.fecha && <span>{errores.fecha}</span>}
                     </Col>
                   </Row>
                 </Form.Group>
@@ -101,12 +140,16 @@ const FormularioPacientes = () => {
                     </Col>
                     <Col lg={6}>
                       <Form.Control
-                        type="text"
-                        placeholder="name@example.com"
+                        type="time"
+                        placeholder=""
                         name="hora"
                         value={mascota.hora}
                         onChange={handleChange}
+                        minLength={4}
+                        maxLength={5}
+                        required
                       />
+                      {errores.hora && <span>{errores.hora}</span>}
                     </Col>
                   </Row>
                 </Form.Group>
@@ -121,10 +164,13 @@ const FormularioPacientes = () => {
                 <Col lg={9}>
                   <Form.Control
                     type="text"
-                    placeholder="name@example.com"
+                    placeholder="Describir sintomas"
                     name="sintomas"
                     value={mascota.sintomas}
                     onChange={handleChange}
+                    minLength={3}
+                    maxLength={100}
+                    required
                   />
                 </Col>
               </Row>
