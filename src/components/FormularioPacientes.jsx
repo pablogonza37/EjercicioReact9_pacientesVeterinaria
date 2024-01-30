@@ -1,6 +1,6 @@
 import { Form, Card, Button, Row, Col } from "react-bootstrap";
 import ListaCitas from "./ListaCitas";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const FormularioPacientes = () => {
   const [mascota, setMascota] = useState({
@@ -10,8 +10,10 @@ const FormularioPacientes = () => {
     hora: "",
     sintomas: "",
   });
-  const [mascotas, setMascotas] = useState([]);
+
   const [errores, setErrores] = useState({});
+  const citasLocalStorage = JSON.parse(localStorage.getItem("mascotasKey")) || [];
+  const [mascotas, setMascotas] = useState(citasLocalStorage);
 
   const validarFormulario = () => {
     let errores = {};
@@ -53,6 +55,10 @@ const FormularioPacientes = () => {
     }
   };
 
+  useEffect(() => {
+    localStorage.setItem("mascotasKey", JSON.stringify(mascotas));
+  }, [mascotas]);
+
   const borrarCita = (nombreMascota) => {
     const indiceCita = mascotas.findIndex((cita) => cita === nombreMascota);
     if (indiceCita !== -1) {
@@ -63,7 +69,6 @@ const FormularioPacientes = () => {
       setMascotas(nuevasCitas);
     }
   };
-
 
   return (
     <section>
