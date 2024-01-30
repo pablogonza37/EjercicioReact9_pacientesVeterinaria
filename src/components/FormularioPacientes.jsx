@@ -53,6 +53,18 @@ const FormularioPacientes = () => {
     }
   };
 
+  const borrarCita = (nombreMascota) => {
+    const indiceCita = mascotas.findIndex((cita) => cita === nombreMascota);
+    if (indiceCita !== -1) {
+      const nuevasCitas = [
+        ...mascotas.slice(0, indiceCita),
+        ...mascotas.slice(indiceCita + 1),
+      ];
+      setMascotas(nuevasCitas);
+    }
+  };
+
+
   return (
     <section>
       <Form className="mx-lg-5 px-lg-5" onSubmit={handleSubmit}>
@@ -183,7 +195,7 @@ const FormularioPacientes = () => {
           </Card.Footer>
         </Card>
       </Form>
-      <ListaCitas mascotas={mascotas}></ListaCitas>
+      <ListaCitas mascotas={mascotas} borrarCita={borrarCita}></ListaCitas>
     </section>
   );
 };

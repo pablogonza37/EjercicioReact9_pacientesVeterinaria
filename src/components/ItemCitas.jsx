@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 
-const ItemCitas = ({mascota}) => {
+const ItemCitas = ({mascota, borrarCita}) => {
   return (
     <Card className="text-center text-bg-dark">
       <Card.Header className="text-start">
@@ -19,7 +19,7 @@ const ItemCitas = ({mascota}) => {
         </ListGroup>
       </Card.Body>
       <Card.Footer className="text-muted text-end">
-        <Button variant="danger" type="submit">
+        <Button variant="danger" type="submit" onClick={() => borrarCita(mascota)}>
           Borrar
         </Button>
       </Card.Footer>
