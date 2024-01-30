@@ -12,7 +12,8 @@ const FormularioPacientes = () => {
   });
 
   const [errores, setErrores] = useState({});
-  const citasLocalStorage = JSON.parse(localStorage.getItem("mascotasKey")) || [];
+  const citasLocalStorage =
+    JSON.parse(localStorage.getItem("mascotasKey")) || [];
   const [mascotas, setMascotas] = useState(citasLocalStorage);
 
   const validarFormulario = () => {
