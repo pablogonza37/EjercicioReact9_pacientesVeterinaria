@@ -24,7 +24,7 @@ const FormularioPacientes = () => {
               </Row>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Row>
                 <Col lg={3}>
                   <Form.Label>Nombre del dueño:</Form.Label>
@@ -39,7 +39,7 @@ const FormularioPacientes = () => {
               <Col lg={6} xs={6}>
                 <Form.Group
                   className="mb-3"
-                  controlId="exampleForm.ControlInput1"
+                  controlId="exampleForm.ControlInput3"
                 >
                   <Row>
                     <Col lg={6}>
@@ -57,7 +57,7 @@ const FormularioPacientes = () => {
               <Col lg={6} xs={6}>
                 <Form.Group
                   className="mb-3"
-                  controlId="exampleForm.ControlInput1"
+                  controlId="exampleForm.ControlInput4"
                 >
                   <Row>
                     <Col lg={6}>
@@ -74,7 +74,7 @@ const FormularioPacientes = () => {
               </Col>
             </Row>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
               <Row>
                 <Col lg={3}>
                   <Form.Label>Sintomas:</Form.Label>
