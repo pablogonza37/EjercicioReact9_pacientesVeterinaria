@@ -8,8 +8,9 @@ function App() {
 
   return (
     <>
+    <h1 className='h1 display-4 text-center py-3 text-white bg-dark mb-3'>Administrador pacientes de veterinaria</h1>
     <Container className='mainPage px-lg-5'>
-      <h1 className='h1 display-4 text-center py-3 text-white bg-dark'>Administrador pacientes de veterinaria</h1>
+      
       <FormularioPacientes></FormularioPacientes>
     </Container>
     <Footer></Footer>

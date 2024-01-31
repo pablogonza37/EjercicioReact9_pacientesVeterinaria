@@ -9,7 +9,7 @@ const ListaCitas = ({ mascotas, borrarCita }) => {
     if (mascotas.length === 0) {
       setSegundoTitulo("No hay citas");
     } else {
-      setSegundoTitulo("Administrar las citas aqui");
+      setSegundoTitulo("Administrar las citas aquí");
     }
   };
 
@@ -19,7 +19,7 @@ const ListaCitas = ({ mascotas, borrarCita }) => {
 
   return (
     <div className="my-5 text-center">
-      <h6 className="h2 display-5 text-white my-4 bg-dark py-3">{segundoTitulo}</h6>
+      <h6 className="h2 display-5 text-white my-4 bg-dark py-3 rounded-5">{segundoTitulo}</h6>
       <Row className="d-flex justify-content-center">
         {mascotas.map((mascota, posicion) => (
           <Col md={6} className="mb-4" key={posicion}>
