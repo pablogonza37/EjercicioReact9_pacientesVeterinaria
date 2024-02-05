@@ -1,6 +1,10 @@
 # Pacientes de Veterinaria (React)
 Este proyecto es una aplicación web que permite registrar citas en una veterinaria. Todos los datos solicitados en el formulario son obligatorios. Las citas se pueden borrar y se guardan en el LocalStorage del navegador.
 
+## Demo
+
+Puedes ver una demostración del proyecto en vivo en [Netlify](https://clinquant-croquembouche-0bbbea.netlify.app/).
+
 ## Funcionalidades
 Formulario de Registro de Citas: Se proporciona un formulario para registrar una cita en la veterinaria. Todos los campos son obligatorios.
 
