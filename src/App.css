@@ -9,5 +9,22 @@
 }
 
 body {
-  background-image: url("https://us.123rf.com/450wm/aquamarine1paint/aquamarine1paint1708/aquamarine1paint170800010/83332862-patr%C3%B3n-sin-fisuras-con-great-dane-y-chihuahua-silueta-peine-collar-correa-hueso-taz%C3%B3n-para-la.jpg?ver=6");
+  
+    background: #7ec9f5; /* Old browsers */
+    background: -moz-linear-gradient(
+      left,
+      #7ec9f5 0%,
+      #3957ed 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+      left,
+      #7ec9f5 0%,
+      #3957ed 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(
+      to right,
+      #7ec9f5 0%,
+      #3957ed 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7ec9f5', endColorstr='#3957ed',GradientType=1 ); /* IE6-9 */
 }

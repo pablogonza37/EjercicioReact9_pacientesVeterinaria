@@ -16,6 +16,17 @@ const FormularioPacientes = () => {
     JSON.parse(localStorage.getItem("mascotasKey")) || [];
   const [mascotas, setMascotas] = useState(citasLocalStorage);
 
+  const obtenerFechaActual = () => {
+    const hoy = new Date();
+    const dia = hoy.getDate();
+    const mes = hoy.getMonth() + 1;
+    const anio = hoy.getFullYear();
+    const fechaActual = `${anio}-${mes < 10 ? "0" + mes : mes}-${
+      dia < 10 ? "0" + dia : dia
+    }`;
+    return fechaActual;
+  };
+
   const validarFormulario = () => {
     let errores = {};
 
@@ -31,6 +42,18 @@ const FormularioPacientes = () => {
 
     if (!mascota.sintomas.trim()) {
       errores.sintomas = "Los síntomas no pueden estar vacíos";
+    }
+
+    if (mascota.fecha < obtenerFechaActual()) {
+      errores.fecha = "La fecha no puede ser anterior a la fecha actual";
+    }
+
+    if (!mascota.sintomas.trim()) {
+      errores.sintomas = "Los síntomas no pueden estar vacíos";
+    } else if (mascota.sintomas.length > 200) {
+      errores.sintomas = "Los síntomas no pueden exceder los 200 caracteres";
+    }else if (mascota.sintomas.length < 4) {
+      errores.sintomas = "Los síntomas deben tener al meños 3 caracteres";
     }
 
     setErrores(errores);
@@ -50,7 +73,13 @@ const FormularioPacientes = () => {
     if (validarFormulario()) {
       alert("Formulario válido. Datos enviados");
       setMascotas((prevState) => [...prevState, mascota]);
-      setMascota({ nombre: "", dueno: "", fecha: "", hora: "", sintomas: "" });
+      setMascota({
+        nombre: "",
+        dueno: "",
+        fecha: "",
+        hora: "",
+        sintomas: "",
+      });
     } else {
       alert("Formulario inválido. Por favor, completar todos los datos.");
     }
@@ -76,7 +105,7 @@ const FormularioPacientes = () => {
       <Form className="mx-lg-5 px-lg-5" onSubmit={handleSubmit}>
         <Card className="text-center">
           <Card.Header className="bg-dark text-white">
-            Llenar el formulario para crear una cita
+            Completá el formulario para crear una cita
           </Card.Header>
           <Card.Body className="text-start">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -95,7 +124,7 @@ const FormularioPacientes = () => {
                     maxLength={30}
                     required
                   />
-                  {errores.nombre && <span>{errores.nombre}</span>}
+                  {errores.nombre && <span className='text-danger'>{errores.nombre}</span>}
                 </Col>
               </Row>
             </Form.Group>
@@ -116,7 +145,7 @@ const FormularioPacientes = () => {
                     maxLength={30}
                     required
                   />
-                  {errores.dueno && <span>{errores.dueno}</span>}
+                  {errores.dueno && <span className='text-danger'>{errores.dueno}</span>}
                 </Col>
               </Row>
             </Form.Group>
@@ -142,7 +171,7 @@ const FormularioPacientes = () => {
                         maxLength={10}
                         required
                       />
-                      {errores.fecha && <span>{errores.fecha}</span>}
+                      {errores.fecha && <span className='text-danger'>{errores.fecha}</span>}
                     </Col>
                   </Row>
                 </Form.Group>
@@ -167,7 +196,7 @@ const FormularioPacientes = () => {
                         maxLength={5}
                         required
                       />
-                      {errores.hora && <span>{errores.hora}</span>}
+                      {errores.hora && <span className='text-danger'>{errores.hora}</span>}
                     </Col>
                   </Row>
                 </Form.Group>
@@ -187,9 +216,10 @@ const FormularioPacientes = () => {
                     value={mascota.sintomas}
                     onChange={handleChange}
                     minLength={3}
-                    maxLength={100}
+                    maxLength={200}
                     required
                   />
+                  {errores.sintomas && <span className='text-danger'>{errores.sintomas}</span>}
                 </Col>
               </Row>
             </Form.Group>
